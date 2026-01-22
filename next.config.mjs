@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  serverExternalPackages: ['@libsql/client', '@prisma/adapter-libsql'],
   images: {
     domains: ['localhost'],
     remotePatterns: [
