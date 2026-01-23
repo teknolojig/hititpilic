@@ -12,7 +12,11 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials) {
+        console.log("=== AUTH DEBUG ===")
+        console.log("Email:", credentials?.email)
+
         if (!credentials?.email || !credentials?.password) {
+          console.log("Missing credentials")
           return null
         }
 
@@ -22,7 +26,13 @@ export const authOptions: NextAuthOptions = {
           }
         })
 
+        console.log("User found:", user ? "YES" : "NO")
+        if (user) {
+          console.log("User email:", user.email)
+        }
+
         if (!user) {
+          console.log("User not found")
           return null
         }
 
@@ -31,7 +41,10 @@ export const authOptions: NextAuthOptions = {
           user.password
         )
 
+        console.log("Password valid:", isPasswordValid)
+
         if (!isPasswordValid) {
+          console.log("Invalid password")
           return null
         }
 
